@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Base64 PDF Converter</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <section class="card">
+        <h1>Base64 PDF Converter</h1>
+        <p class="subtitle">
+          Clique em <strong>Salvar</strong> para validar o Base64 da área de colagem e salvar o PDF em
+          <code>Downloads</code>.
+        </p>
+
+        <div class="actions">
+          <button id="saveBtn" class="btn-primary">Salvar</button>
+          <button id="refreshBtn" class="btn-secondary">Atualizar lista</button>
+        </div>
+
+        <p id="status" class="status" aria-live="polite"></p>
+      </section>
+
+      <section class="card">
+        <div class="list-header">
+          <h2>PDFs em Downloads</h2>
+          <small>Arraste um item para fora da janela para outra tela/app</small>
+        </div>
+
+        <ul id="pdfList" class="pdf-list"></ul>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

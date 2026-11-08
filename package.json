@@ -1,0 +1,58 @@
+{
+  "name": "base64-pdf-clipboard-cli",
+  "version": "1.0.0",
+  "description": "CLI + GUI para ler Base64 do clipboard, validar PDF e salvar em Downloads",
+  "main": "electron-main.js",
+  "bin": {
+    "base64-pdf": "./index.js"
+  },
+  "scripts": {
+    "start": "electron .",
+    "cli": "node index.js",
+    "build:mac": "electron-builder --mac --dir",
+    "dist:mac": "electron-builder --mac dmg",
+    "install:mac": "npm run build:mac && cp -R \"dist/mac/Base64 PDF Converter.app\" \"/Applications/Base64 PDF Converter.app\" && echo '✅ Instalado em /Applications'"
+  },
+  "keywords": [
+    "base64",
+    "pdf",
+    "clipboard",
+    "cli"
+  ],
+  "license": "MIT",
+  "build": {
+    "appId": "com.local.base64pdfconverter",
+    "productName": "Base64 PDF Converter",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "electron-main.js",
+      "preload.js",
+      "renderer/**",
+      "lib/**",
+      "node_modules/**",
+      "!node_modules/electron-builder/**",
+      "!node_modules/.cache/**"
+    ],
+    "mac": {
+      "category": "public.app-category.utilities",
+      "target": [
+        {
+          "target": "dir",
+          "arch": [
+            "arm64",
+            "x64"
+          ]
+        }
+      ]
+    }
+  },
+  "dependencies": {
+    "pdf-lib": "^1.17.1"
+  },
+  "devDependencies": {
+    "electron": "^31.7.7",
+    "electron-builder": "^25.1.8"
+  }
+}
