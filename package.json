@@ -7,11 +7,12 @@
     "base64-pdf": "./index.js"
   },
   "scripts": {
+    "postinstall": "xattr -cr node_modules/electron/dist/Electron.app 2>/dev/null && codesign --force --deep --sign - node_modules/electron/dist/Electron.app 2>/dev/null || true",
     "start": "electron .",
     "cli": "node index.js",
-    "build:mac": "electron-builder --mac --dir",
+    "build:mac": "electron-builder --mac --dir && xattr -cr dist/mac*/*.app 2>/dev/null && codesign --force --deep --sign - dist/mac*/*.app 2>/dev/null || true",
     "dist:mac": "electron-builder --mac dmg",
-    "install:mac": "npm run build:mac && cp -R \"dist/mac/Base64 PDF Converter.app\" \"/Applications/Base64 PDF Converter.app\" && echo '✅ Instalado em /Applications'"
+    "install:mac": "npm run build:mac && APP_PATH=$(ls -d dist/mac*/'Base64 PDF Converter.app' | head -n 1) && cp -R \"$APP_PATH\" \"/Applications/Base64 PDF Converter.app\" && xattr -cr \"/Applications/Base64 PDF Converter.app\" && echo '✅ Instalado em /Applications'"
   },
   "keywords": [
     "base64",
